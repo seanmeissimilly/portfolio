@@ -1,25 +1,10 @@
-import NavBar from "./components/NavBar";
-import Banner from "./components/Banner";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import React from 'react';
+import HomePage from './pages/HomePage';
 
-function App() {
-
-
+const App: React.FC = () => {
   return (
-    <>
-      <NavBar />
-      <Banner />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
-    </>
-
-
-  )
+    <HomePage />
+  );
 }
 
-export default App
+export default App;
