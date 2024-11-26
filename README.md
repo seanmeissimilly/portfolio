@@ -1,50 +1,34 @@
-# React + TypeScript + Vite
+# Mi Portafolio / My Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Bienvenido a mi portafolio! Este proyecto está construido usando React y TypeScript y está desplegado en GitHub Pages.  
+Welcome to my portfolio! This project is built using React and TypeScript and is deployed on GitHub Pages.
 
-Currently, two official plugins are available:
+## Tecnologías Utilizadas / Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Una biblioteca de JavaScript para construir interfaces de usuario.  
+  **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: Un superconjunto de JavaScript que añade tipos estáticos.  
+  **TypeScript**: A superset of JavaScript that adds static types.
+- **Styled Components / TailwindCSS**: Librerías de CSS para estilizar la aplicación (elige la que prefieras).  
+  **Styled Components / TailwindCSS**: CSS libraries for styling the application (choose your preference).
+- **GitHub Pages**: Para desplegar la aplicación.  
+  **GitHub Pages**: For deploying the application.
 
-## Expanding the ESLint configuration
+## Características / Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Interfaz Intuitiva**: Una presentación clara y atractiva de mis trabajos y habilidades.  
+  **Intuitive Interface**: A clear and attractive presentation of my work and skills.
+- **Responsivo**: Diseño adaptable a cualquier dispositivo, desde móviles hasta pantallas grandes.  
+  **Responsive**: Design adaptable to any device, from mobile to large screens.
+- **Interactividad**: Animaciones y transiciones para mejorar la experiencia del usuario.  
+  **Interactivity**: Animations and transitions to enhance user experience.
 
-- Configure the top-level `parserOptions` property like this:
+## Contacto / Contact
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de [mi email](mailto:seanmeissimilly@gmail.com).  
+If you have any questions or suggestions, feel free to contact me at [my email](mailto:seanmeissimilly@gmail.com).
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+¡Gracias por visitar mi portafolio!  
+Thank you for visiting my portfolio!
