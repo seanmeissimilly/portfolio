@@ -1,6 +1,6 @@
 import React from 'react';
-import githubIcon from '../assets/img/nav-icon1.svg';
-import linkedinIcon from '../assets/img/nav-icon2.svg';
+import githubIcon from '../assets/img/nav-icon2.svg';
+import linkedinIcon from '../assets/img/nav-icon1.svg';
 import { MdEmail } from "react-icons/md";
 
 const Footer: React.FC = () => {
