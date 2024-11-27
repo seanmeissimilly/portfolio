@@ -15,7 +15,6 @@ const HomePage: React.FC = () => {
             <Skills />
             <Projects />
             <About />
-            <Contact />
             <Footer />
         </>
     );

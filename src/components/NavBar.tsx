@@ -21,9 +21,9 @@ const NavBar: React.FC = () => {
                     <a href="#about" className="mx-2">
                         <Button>About</Button>
                     </a>
-                    <a href="#contact" className="mx-2">
+                    {/* <a href="#contact" className="mx-2">
                         <Button>Contact</Button>
-                    </a>
+                    </a> */}
                 </div>
             </div>
         </nav>
