@@ -45,7 +45,7 @@ const Projects: React.FC = () => {
     const renderProjects = currentProjects.map((project) => (
         <motion.div
             key={project.id}
-            className="bg-gray-200 p-4 rounded"
+            className="bg-gray-200 p-4 rounded min-h-[200px] max-h-[300px] flex flex-col justify-between"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
