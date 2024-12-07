@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "./ui/button";
 import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
 
 const NavBar: React.FC = () => {
     return (
@@ -15,18 +16,18 @@ const NavBar: React.FC = () => {
                     My Portfolio
                 </div>
                 <div>
-                    <a href="#banner" className="mx-2">
+                    <Link to="banner" smooth={true} duration={500} className="mx-2 cursor-pointer">
                         <Button>Home</Button>
-                    </a>
-                    <a href="#projects" className="mx-2">
+                    </Link>
+                    <Link to="projects" smooth={true} duration={500} className="mx-2 cursor-pointer">
                         <Button>Projects</Button>
-                    </a>
-                    <a href="#skills" className="mx-2">
+                    </Link>
+                    <Link to="skills" smooth={true} duration={500} className="mx-2 cursor-pointer">
                         <Button>Skills</Button>
-                    </a>
-                    <a href="#about" className="mx-2">
+                    </Link>
+                    <Link to="about" smooth={true} duration={500} className="mx-2 cursor-pointer">
                         <Button>About</Button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </motion.nav>
@@ -34,4 +35,5 @@ const NavBar: React.FC = () => {
 }
 
 export default NavBar;
+
 

@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "./ui/button";
 import cvPDF from '../assets/CV-David.pdf';
 import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleDownloadClick = () => {
+        setIsLoading(true);
+
+        // Simulate a delay for loading animation
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = cvPDF;
+            link.download = "Sean_Meissimilly_CV.pdf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            setIsLoading(false);
+        }, 1000); // 1 segundos de simulación de carga
+    };
+
     return (
         <section id="about" className="bg-gray-100 p-8">
             <div className="container mx-auto text-center max-w-2xl">
@@ -29,11 +47,24 @@ const About: React.FC = () => {
                             <li className="text-lg">Computer Engineering, 2024</li>
                         </ul>
                     </div>
-                    <a href={cvPDF} download="Sean_Meissimilly_CV.pdf" className="mt-8 inline-block">
-                        <Button className="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
-                            Download CV
+                    <div className="mt-8 inline-block">
+                        <Button
+                            className={`bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ${isLoading ? 'cursor-not-allowed' : ''}`}
+                            onClick={handleDownloadClick}
+                            disabled={isLoading}
+                        >
+                            {isLoading ? (
+                                <motion.div
+                                    className="loader inline-block w-4 h-4 border-2 border-t-2 border-white rounded-full animate-spin"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                ></motion.div>
+                            ) : (
+                                "Download CV"
+                            )}
                         </Button>
-                    </a>
+                    </div>
                 </motion.div>
             </div>
         </section>
@@ -41,6 +72,7 @@ const About: React.FC = () => {
 }
 
 export default About;
+
 
 
 
