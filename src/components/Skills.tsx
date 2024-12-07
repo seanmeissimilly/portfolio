@@ -1,7 +1,9 @@
 import React from 'react';
-import { SiJavascript, SiPython, SiCsharp, SiTypescript, SiDjango, SiExpress, SiNodedotjs, SiJirasoftware, SiReact, SiRedux, SiTailwindcss, SiPostgresql, SiMariadb, SiMicrosoftsqlserver, SiMysql, SiMongodb, SiLinux, SiGithub } from 'react-icons/si';
+import { SiJavascript, SiPython, SiTypescript, SiDjango, SiExpress, SiNodedotjs, SiJirasoftware, SiReact, SiRedux, SiTailwindcss, SiPostgresql, SiMariadb, SiMysql, SiMongodb, SiLinux, SiGithub } from 'react-icons/si';
 import { DiJava } from "react-icons/di";
 import { motion } from 'framer-motion';
+import { TbBrandCSharp } from "react-icons/tb";
+import { DiMsqlServer } from "react-icons/di";
 
 
 const Skills: React.FC = () => {
@@ -28,7 +30,7 @@ const Skills: React.FC = () => {
                             <li><SiPython className="inline mr-2" />Python</li>
                             <li><SiTypescript className="inline mr-2" />TypeScript</li>
                             <li><SiJavascript className="inline mr-2" />JavaScript</li>
-                            <li><SiCsharp className="inline mr-2" />C#</li>
+                            <li><TbBrandCSharp className="inline mr-2" />C#</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -66,7 +68,7 @@ const Skills: React.FC = () => {
                         <ul className="list-disc list-inside">
                             <li><SiPostgresql className="inline mr-2" />PostgreSQL</li>
                             <li><SiMariadb className="inline mr-2" />MariaDB</li>
-                            <li><SiMicrosoftsqlserver className="inline mr-2" />SQL Server</li>
+                            <li><DiMsqlServer className="inline mr-2" />SQL Server</li>
                             <li><SiMysql className="inline mr-2" />MySQL</li>
                             <li><SiMongodb className="inline mr-2" />MongoDB</li>
                         </ul>
