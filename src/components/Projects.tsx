@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SiGithub } from 'react-icons/si';
 import Pagination from './Pagination';
+import { motion } from 'framer-motion';
+
 
 const Projects: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -27,13 +29,19 @@ const Projects: React.FC = () => {
     const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
 
     const renderProjects = currentProjects.map((project, index) => (
-        <div key={index} className="bg-gray-200 p-4 rounded">
+        <motion.div
+            key={index}
+            className="bg-gray-200 p-4 rounded"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
             <h3 className="text-xl font-bold">{project.title}</h3>
             <p>{project.description}</p>
             <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 inline-flex items-center mt-2">
                 <SiGithub className="mr-2" /> View on GitHub
             </a>
-        </div>
+        </motion.div>
     ));
 
     return (
@@ -50,5 +58,6 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
+
 
 
