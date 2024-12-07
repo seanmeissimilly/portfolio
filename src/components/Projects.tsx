@@ -1,44 +1,58 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { SiGithub } from 'react-icons/si';
 import Pagination from './Pagination';
 import { motion } from 'framer-motion';
 
+// Definir el tipo para los proyectos
+type Project = {
+    id: number;
+    name: string;
+    description: string | null;
+    html_url: string;
+};
 
 const Projects: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [projects, setProjects] = useState<Project[]>([]);
     const projectsPerPage = 3;
-    const projects = [
-        { title: 'Repositorio Virtual', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/repositorio-virtual' },
-        { title: 'Proyecto 2', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/proyecto-2' },
-        { title: 'Proyecto 3', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/proyecto-3' },
-        { title: 'Proyecto 4', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/repositorio-virtual' },
-        { title: 'Proyecto 5', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/proyecto-2' },
-        { title: 'Proyecto 6', description: 'Descripción del proyecto...', link: 'https://github.com/seanmeissimilly/proyecto-3' },
-    ];
-
-    const totalPages = Math.ceil(projects.length / projectsPerPage);
 
     useEffect(() => {
-        if (currentPage > totalPages) {
-            setCurrentPage(totalPages);
-        }
-    }, [currentPage, totalPages]);
+        const fetchProjects = async () => {
+            try {
+                const response = await axios.get('https://api.github.com/users/seanmeissimilly/repos');
+                const data: Project[] = response.data.map((project: Project) => ({
+                    id: project.id,
+                    name: project.name,
+                    html_url: project.html_url,
+                    description: project.description || 'No description provided',
+                }));
+                setProjects(data);
+            } catch (error) {
+                console.error('Error fetching GitHub repositories:', error);
+            }
+        };
 
+        fetchProjects();
+    }, []);
+
+
+    const totalPages = Math.ceil(projects.length / projectsPerPage);
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
     const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
 
-    const renderProjects = currentProjects.map((project, index) => (
+    const renderProjects = currentProjects.map((project) => (
         <motion.div
-            key={index}
+            key={project.id}
             className="bg-gray-200 p-4 rounded"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <h3 className="text-xl font-bold">{project.title}</h3>
+            <h3 className="text-xl font-bold">{project.name}</h3>
             <p>{project.description}</p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 inline-flex items-center mt-2">
+            <a href={project.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 inline-flex items-center mt-2">
                 <SiGithub className="mr-2" /> View on GitHub
             </a>
         </motion.div>
@@ -49,7 +63,7 @@ const Projects: React.FC = () => {
             <div className="container mx-auto">
                 <h2 className="text-2xl font-bold mb-4">Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {renderProjects}
+                    {renderProjects.length > 0 ? renderProjects : <p>No projects found</p>}
                 </div>
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             </div>
@@ -58,6 +72,3 @@ const Projects: React.FC = () => {
 };
 
 export default Projects;
-
-
-
