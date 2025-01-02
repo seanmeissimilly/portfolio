@@ -11,18 +11,18 @@ const Footer: React.FC = () => {
         <footer className="bg-gray-900 text-white py-4">
             <div className="container mx-auto flex flex-col items-center">
                 <motion.div
-                    className="mb-4 flex justify-center"
+                    className="mb-4 flex justify-center flex-wrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <a href="mailto:seanmeissimilly@gmail.com" className="mx-2">
+                    <a href="mailto:seanmeissimilly@gmail.com" className="mx-2 my-1">
                         <MdEmail className="w-6 h-6 transition-transform transform hover:scale-110" />
                     </a>
-                    <a href="https://github.com/seanmeissimilly" target="_blank" rel="noopener noreferrer" className="mx-2">
+                    <a href="https://github.com/seanmeissimilly" target="_blank" rel="noopener noreferrer" className="mx-2 my-1">
                         <img src={githubIcon} alt="GitHub" className="w-6 h-6 transition-transform transform hover:scale-110 filter invert" />
                     </a>
-                    <a href="https://www.linkedin.com/in/sean-meissimilly-15082a23a/" target="_blank" rel="noopener noreferrer" className="mx-2">
+                    <a href="https://www.linkedin.com/in/sean-meissimilly-15082a23a/" target="_blank" rel="noopener noreferrer" className="mx-2 my-1">
                         <img src={linkedinIcon} alt="LinkedIn" className="w-6 h-6 transition-transform transform hover:scale-110 filter invert" />
                     </a>
                 </motion.div>
@@ -48,4 +48,3 @@ const Footer: React.FC = () => {
 }
 
 export default Footer;
-

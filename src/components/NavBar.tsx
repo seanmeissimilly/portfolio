@@ -11,11 +11,11 @@ const NavBar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
         >
-            <div className="container mx-auto flex justify-between items-center">
+            <div className="container mx-auto flex flex-wrap justify-between items-center">
                 <div className="text-lg font-bold">
                     My Portfolio
                 </div>
-                <div>
+                <div className="flex flex-wrap justify-center">
                     <Link to="banner" smooth={true} duration={500} className="mx-2 cursor-pointer">
                         <Button>Home</Button>
                     </Link>
@@ -35,5 +35,3 @@ const NavBar: React.FC = () => {
 }
 
 export default NavBar;
-
-

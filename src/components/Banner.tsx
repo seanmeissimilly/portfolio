@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 
 const Banner: React.FC = () => {
     return (
-        <section id="banner" className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-12">
+        <section id="banner" className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-6 md:p-12">
             <div className="container mx-auto text-center">
                 <motion.h1
-                    className="text-5xl font-extrabold mb-6"
+                    className="text-3xl md:text-5xl font-extrabold mb-6"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -17,7 +17,7 @@ const Banner: React.FC = () => {
                     Welcome to My Portfolio
                 </motion.h1>
                 <motion.p
-                    className="text-2xl mb-4"
+                    className="text-lg md:text-2xl mb-4"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
@@ -25,7 +25,7 @@ const Banner: React.FC = () => {
                     I'm Sean Meissimilly, a FullStack Developer with expertise in web programming, and more.
                 </motion.p>
                 <motion.p
-                    className="text-lg mb-6"
+                    className="text-base md:text-lg mb-6"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -54,4 +54,3 @@ const Banner: React.FC = () => {
 };
 
 export default Banner;
-
