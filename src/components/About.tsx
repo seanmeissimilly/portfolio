@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { Button } from "./ui/button";
-import cvPDF from '../assets/CV-David.pdf';
+import { FiDownload } from 'react-icons/fi';
+import cvPDF_ES from '../assets/CV-David-ES.pdf';
+import cvPDF_EN from '../assets/CV-David-EN.pdf';
 import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<{ es: boolean, en: boolean }>({ es: false, en: false });
 
-    const handleDownloadClick = () => {
-        setIsLoading(true);
+    const handleDownloadClick = (lang: 'es' | 'en') => {
+        setIsLoading(prevState => ({ ...prevState, [lang]: true }));
 
         // Simulate a delay for loading animation
         setTimeout(() => {
             const link = document.createElement('a');
-            link.href = cvPDF;
-            link.download = "Sean_Meissimilly_CV.pdf";
+            link.href = lang === 'es' ? cvPDF_ES : cvPDF_EN;
+            link.download = lang === 'es' ? "David_CV_ES.pdf" : "David_CV_EN.pdf";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
 
-            setIsLoading(false);
-        }, 1000); // 1 segundos de simulación de carga
+            setIsLoading(prevState => ({ ...prevState, [lang]: false }));
+        }, 1000); // 1 segundo de simulación de carga
     };
 
     return (
@@ -39,7 +40,6 @@ const About: React.FC = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <p className="text-lg mb-4"><strong>Name:</strong> Sean Meissimilly</p>
                     <h3 className="text-2xl font-semibold mt-6 mb-4">🎓 Education</h3>
                     <div className="text-left">
                         <p className="text-lg font-bold">Universidad Tecnológica de la Habana CUJAE, La Habana</p>
@@ -47,13 +47,16 @@ const About: React.FC = () => {
                             <li className="text-lg">Computer Engineering, 2024</li>
                         </ul>
                     </div>
-                    <div className="mt-8 inline-block">
-                        <Button
-                            className={`bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ${isLoading ? 'cursor-not-allowed' : ''}`}
-                            onClick={handleDownloadClick}
-                            disabled={isLoading}
+                    <div className="mt-8 flex justify-center space-x-4">
+                        <motion.button
+                            className={`bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:shadow-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 ${isLoading.es ? 'cursor-not-allowed' : ''}`}
+                            onClick={() => handleDownloadClick('es')}
+                            disabled={isLoading.es}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5 }}
                         >
-                            {isLoading ? (
+                            {isLoading.es ? (
                                 <motion.div
                                     className="loader inline-block w-4 h-4 border-2 border-t-2 border-white rounded-full animate-spin"
                                     initial={{ opacity: 0 }}
@@ -61,9 +64,34 @@ const About: React.FC = () => {
                                     transition={{ duration: 0.5 }}
                                 ></motion.div>
                             ) : (
-                                "Download CV"
+                                <>
+                                    <FiDownload className="inline-block w-4 h-4 mr-2" />
+                                    CV ES
+                                </>
                             )}
-                        </Button>
+                        </motion.button>
+                        <motion.button
+                            className={`bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:shadow-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 ${isLoading.en ? 'cursor-not-allowed' : ''}`}
+                            onClick={() => handleDownloadClick('en')}
+                            disabled={isLoading.en}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {isLoading.en ? (
+                                <motion.div
+                                    className="loader inline-block w-4 h-4 border-2 border-t-2 border-white rounded-full animate-spin"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                ></motion.div>
+                            ) : (
+                                <>
+                                    <FiDownload className="inline-block w-4 h-4 mr-2" />
+                                    CV EN
+                                </>
+                            )}
+                        </motion.button>
                     </div>
                 </motion.div>
             </div>
@@ -72,7 +100,3 @@ const About: React.FC = () => {
 }
 
 export default About;
-
-
-
-
