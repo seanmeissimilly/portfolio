@@ -1,9 +1,10 @@
 import React from 'react';
-import { SiJavascript, SiPython, SiTypescript, SiDjango, SiExpress, SiNodedotjs, SiJirasoftware, SiReact, SiRedux, SiTailwindcss, SiPostgresql, SiMariadb, SiMysql, SiMongodb, SiLinux, SiGithub } from 'react-icons/si';
+import { SiJavascript, SiPython, SiTypescript, SiNextdotjs, SiDjango, SiExpress, SiNodedotjs, SiJirasoftware, SiReact, SiRedux, SiTailwindcss, SiPostgresql, SiMariadb, SiMysql, SiMongodb, SiLinux, SiGithub } from 'react-icons/si';
 import { DiJava } from "react-icons/di";
 import { motion } from 'framer-motion';
 import { TbBrandCSharp } from "react-icons/tb";
 import { DiMsqlServer } from "react-icons/di";
+
 
 
 const Skills: React.FC = () => {
@@ -26,10 +27,10 @@ const Skills: React.FC = () => {
                     >
                         <h3 className="text-xl font-semibold mb-2">Programming Languages</h3>
                         <ul className="list-disc list-inside">
-                            <li><DiJava className="inline mr-2" />Java</li>
-                            <li><SiPython className="inline mr-2" />Python</li>
-                            <li><SiTypescript className="inline mr-2" />TypeScript</li>
                             <li><SiJavascript className="inline mr-2" />JavaScript</li>
+                            <li><SiTypescript className="inline mr-2" />TypeScript</li>
+                            <li><SiPython className="inline mr-2" />Python</li>
+                            <li><DiJava className="inline mr-2" />Java</li>
                             <li><TbBrandCSharp className="inline mr-2" />C#</li>
                         </ul>
                     </motion.div>
@@ -41,12 +42,13 @@ const Skills: React.FC = () => {
                         <h3 className="text-xl font-semibold mb-2">Frameworks and Libraries</h3>
                         <ul className="list-disc list-inside">
                             <li><SiDjango className="inline mr-2" />Django Rest Framework</li>
-                            <li><SiExpress className="inline mr-2" />Express JS</li>
-                            <li><SiNodedotjs className="inline mr-2" />Node JS</li>
-                            <li><SiJirasoftware className="inline mr-2" />JSP</li>
                             <li><SiReact className="inline mr-2" />React JS</li>
                             <li><SiRedux className="inline mr-2" />Redux</li>
+                            <li><SiExpress className="inline mr-2" />Express JS</li>
+                            <li><SiNextdotjs className="inline mr-2" />Next JS</li>
+                            <li><SiNodedotjs className="inline mr-2" />Node JS</li>
                             <li><SiTailwindcss className="inline mr-2" />Tailwind CSS</li>
+                            <li><SiJirasoftware className="inline mr-2" />JSP</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -67,10 +69,10 @@ const Skills: React.FC = () => {
                         <h3 className="text-xl font-semibold mb-2">Databases</h3>
                         <ul className="list-disc list-inside">
                             <li><SiPostgresql className="inline mr-2" />PostgreSQL</li>
-                            <li><SiMariadb className="inline mr-2" />MariaDB</li>
-                            <li><DiMsqlServer className="inline mr-2" />SQL Server</li>
-                            <li><SiMysql className="inline mr-2" />MySQL</li>
                             <li><SiMongodb className="inline mr-2" />MongoDB</li>
+                            <li><SiMariadb className="inline mr-2" />MariaDB</li>
+                            <li><SiMysql className="inline mr-2" />MySQL</li>
+                            <li><DiMsqlServer className="inline mr-2" />SQL Server</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -91,8 +93,12 @@ const Skills: React.FC = () => {
                         <h3 className="text-xl font-semibold mb-2">Soft Skills</h3>
                         <ul className="list-disc list-inside">
                             <li>Effective communication</li>
-                            <li>Teamwork</li>
                             <li>Fast learning</li>
+                            <li>Teamwork and collaboration</li>
+                            <li>Problem-solving</li>
+                            <li>Adaptability</li>
+                            <li>Critical thinking</li>
+                            <li>Conflict resolution</li>
                         </ul>
                     </motion.div>
                     <motion.div
@@ -103,7 +109,7 @@ const Skills: React.FC = () => {
                         <h3 className="text-xl font-semibold mb-2">Languages</h3>
                         <ul className="list-disc list-inside">
                             <li>Spanish: Native</li>
-                            <li>English: Intermediate</li>
+                            <li>English: (B1) Intermediate </li>
                         </ul>
                     </motion.div>
                 </div>
