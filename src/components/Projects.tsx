@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from 'axios';
 import { DiJava, DiTerminal } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
-
 import {
     SiGithub,
     SiJavascript,
@@ -14,8 +13,6 @@ import {
 } from "react-icons/si";
 import Pagination from "./Pagination";
 import { motion } from "framer-motion";
-
-
 
 type Project = {
     id: number;
@@ -29,8 +26,9 @@ type Project = {
 const Projects: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
     const projectsPerPage = 3;
-
     const MAX_RETRIES = 5;
     const RETRY_DELAY = 1000; // 1 segundo
 
@@ -55,9 +53,15 @@ const Projects: React.FC = () => {
     };
 
     useEffect(() => {
+        const abortController = new AbortController();
+
         const fetchProjects = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                const response = await axios.get('https://api.github.com/users/seanmeissimilly/repos');
+                const response = await axios.get('https://api.github.com/users/seanmeissimilly/repos', {
+                    signal: abortController.signal,
+                });
                 const projectsData: Project[] = await Promise.all(
                     response.data.map(async (project: Project) => {
                         const languages = await fetchLanguages(project.languages_url);
@@ -73,15 +77,22 @@ const Projects: React.FC = () => {
                 );
                 setProjects(projectsData);
             } catch (error) {
-                console.error("Error fetching GitHub repositories:", error);
+                if (axios.isAxiosError(error) && error.code !== 'ERR_CANCELED') {
+                    setError("Error fetching GitHub repositories");
+                }
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchProjects();
-    },);
 
+        return () => {
+            abortController.abort();
+        };
+    }, []);
 
-    const languageIcons: { [key: string]: JSX.Element } = {
+    const languageIcons: { [key: string]: JSX.Element } = useMemo(() => ({
         JavaScript: <SiJavascript />,
         Python: <SiPython />,
         HTML: <SiHtml5 />,
@@ -91,17 +102,14 @@ const Projects: React.FC = () => {
         Java: <DiJava />,
         TypeScript: <SiTypescript />,
         Shell: <DiTerminal />,
-    };
+    }), []);
 
     const totalPages = Math.ceil(projects.length / projectsPerPage);
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-    const currentProjects = projects.slice(
-        indexOfFirstProject,
-        indexOfLastProject
-    );
+    const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
 
-    const renderProjects = currentProjects.map((project) => (
+    const renderProjects = useMemo(() => currentProjects.map((project) => (
         <motion.div
             key={project.id}
             className="bg-gray-200 p-4 rounded min-h-[200px] max-h-[300px] flex flex-col justify-between"
@@ -111,7 +119,13 @@ const Projects: React.FC = () => {
         >
             <h3 className="text-xl font-bold">{project.name}</h3>
             <p>{project.description}</p>
-            <div className="flex space-x-2"> {project.languages.map((language) => (<span key={language}> {languageIcons[language] || <span>{language}</span>} </span>))} </div>
+            <div className="flex space-x-2">
+                {project.languages.map((language) => (
+                    <span key={language}>
+                        {languageIcons[language] || <span>{language}</span>}
+                    </span>
+                ))}
+            </div>
             <a
                 href={project.html_url}
                 target="_blank"
@@ -121,7 +135,15 @@ const Projects: React.FC = () => {
                 <SiGithub className="mr-2" /> View on GitHub
             </a>
         </motion.div>
-    ));
+    )), [currentProjects, languageIcons]);
+
+    if (loading) {
+        return <div className="flex justify-center items-center h-screen"><p>Loading...</p></div>;
+    }
+
+    if (error) {
+        return <div className="flex justify-center items-center h-screen"><p>{error}</p></div>;
+    }
 
     return (
         <section id="projects" className="bg-white p-8">
@@ -144,4 +166,4 @@ const Projects: React.FC = () => {
     );
 };
 
-export default Projects;
+export default React.memo(Projects);

@@ -1,11 +1,107 @@
 import React from 'react';
 import { SiJavascript, SiPython, SiTypescript, SiNextdotjs, SiDjango, SiExpress, SiNodedotjs, SiJirasoftware, SiReact, SiRedux, SiTailwindcss, SiPostgresql, SiMariadb, SiMysql, SiMongodb, SiLinux, SiGithub } from 'react-icons/si';
-import { DiJava } from "react-icons/di";
-import { motion } from 'framer-motion';
+import { DiJava, DiMsqlServer } from "react-icons/di";
 import { TbBrandCSharp } from "react-icons/tb";
-import { DiMsqlServer } from "react-icons/di";
+import { motion } from 'framer-motion';
 
+type Skill = {
+    name: string;
+    icon?: JSX.Element;
+};
 
+type SkillCategory = {
+    title: string;
+    skills: Skill[];
+};
+
+const skillCategories: SkillCategory[] = [
+    {
+        title: "Programming Languages",
+        skills: [
+            { name: "JavaScript", icon: <SiJavascript /> },
+            { name: "TypeScript", icon: <SiTypescript /> },
+            { name: "Python", icon: <SiPython /> },
+            { name: "Java", icon: <DiJava /> },
+            { name: "C#", icon: <TbBrandCSharp /> },
+        ],
+    },
+    {
+        title: "Frameworks and Libraries",
+        skills: [
+            { name: "Django Rest Framework", icon: <SiDjango /> },
+            { name: "React JS", icon: <SiReact /> },
+            { name: "Redux", icon: <SiRedux /> },
+            { name: "Express JS", icon: <SiExpress /> },
+            { name: "Next JS", icon: <SiNextdotjs /> },
+            { name: "Node JS", icon: <SiNodedotjs /> },
+            { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+            { name: "JSP", icon: <SiJirasoftware /> },
+        ],
+    },
+    {
+        title: "Version Control",
+        skills: [
+            { name: "Git", icon: <SiGithub /> },
+        ],
+    },
+    {
+        title: "Databases",
+        skills: [
+            { name: "PostgreSQL", icon: <SiPostgresql /> },
+            { name: "MongoDB", icon: <SiMongodb /> },
+            { name: "MariaDB", icon: <SiMariadb /> },
+            { name: "MySQL", icon: <SiMysql /> },
+            { name: "SQL Server", icon: <DiMsqlServer /> },
+        ],
+    },
+    {
+        title: "Operating Systems",
+        skills: [
+            { name: "Linux (experience working with the operating system)", icon: <SiLinux /> },
+        ],
+    },
+    {
+        title: "Soft Skills",
+        skills: [
+            { name: "Effective communication" },
+            { name: "Fast learning" },
+            { name: "Teamwork and collaboration" },
+            { name: "Problem-solving" },
+            { name: "Adaptability" },
+            { name: "Critical thinking" },
+            { name: "Conflict resolution" },
+        ],
+    },
+    {
+        title: "Languages",
+        skills: [
+            { name: "Spanish: Native" },
+            { name: "English: (B1) Intermediate" },
+        ],
+    },
+];
+
+const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
+    <li className="flex items-center">
+        {skill.icon && <span className="mr-2">{skill.icon}</span>}
+        {skill.name}
+    </li>
+);
+
+const SkillCategorySection: React.FC<{ category: SkillCategory; delay: number }> = ({ category, delay }) => (
+    <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay }}
+    >
+        <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+        <ul className="list-disc list-inside">
+            {category.skills.map((skill, index) => (
+                <SkillItem key={index} skill={skill} />
+            ))}
+        </ul>
+    </motion.div>
+);
 
 const Skills: React.FC = () => {
     return (
@@ -20,102 +116,13 @@ const Skills: React.FC = () => {
                     Skills
                 </motion.h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Programming Languages</h3>
-                        <ul className="list-disc list-inside">
-                            <li><SiJavascript className="inline mr-2" />JavaScript</li>
-                            <li><SiTypescript className="inline mr-2" />TypeScript</li>
-                            <li><SiPython className="inline mr-2" />Python</li>
-                            <li><DiJava className="inline mr-2" />Java</li>
-                            <li><TbBrandCSharp className="inline mr-2" />C#</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Frameworks and Libraries</h3>
-                        <ul className="list-disc list-inside">
-                            <li><SiDjango className="inline mr-2" />Django Rest Framework</li>
-                            <li><SiReact className="inline mr-2" />React JS</li>
-                            <li><SiRedux className="inline mr-2" />Redux</li>
-                            <li><SiExpress className="inline mr-2" />Express JS</li>
-                            <li><SiNextdotjs className="inline mr-2" />Next JS</li>
-                            <li><SiNodedotjs className="inline mr-2" />Node JS</li>
-                            <li><SiTailwindcss className="inline mr-2" />Tailwind CSS</li>
-                            <li><SiJirasoftware className="inline mr-2" />JSP</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Version Control</h3>
-                        <ul className="list-disc list-inside">
-                            <li><SiGithub className="inline mr-2" />Git</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Databases</h3>
-                        <ul className="list-disc list-inside">
-                            <li><SiPostgresql className="inline mr-2" />PostgreSQL</li>
-                            <li><SiMongodb className="inline mr-2" />MongoDB</li>
-                            <li><SiMariadb className="inline mr-2" />MariaDB</li>
-                            <li><SiMysql className="inline mr-2" />MySQL</li>
-                            <li><DiMsqlServer className="inline mr-2" />SQL Server</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Operating Systems</h3>
-                        <ul className="list-disc list-inside">
-                            <li><SiLinux className="inline mr-2" />Linux (experience working with the operating system)</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.5 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Soft Skills</h3>
-                        <ul className="list-disc list-inside">
-                            <li>Effective communication</li>
-                            <li>Fast learning</li>
-                            <li>Teamwork and collaboration</li>
-                            <li>Problem-solving</li>
-                            <li>Adaptability</li>
-                            <li>Critical thinking</li>
-                            <li>Conflict resolution</li>
-                        </ul>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: 0.6 }}
-                    >
-                        <h3 className="text-xl font-semibold mb-2">Languages</h3>
-                        <ul className="list-disc list-inside">
-                            <li>Spanish: Native</li>
-                            <li>English: (B1) Intermediate </li>
-                        </ul>
-                    </motion.div>
+                    {skillCategories.map((category, index) => (
+                        <SkillCategorySection key={index} category={category} delay={index * 0.1} />
+                    ))}
                 </div>
             </div>
         </section>
     );
-}
+};
 
 export default Skills;

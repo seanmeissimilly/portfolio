@@ -17,21 +17,21 @@ const NavBar: React.FC = () => {
                 </div>
                 <div className="flex flex-wrap justify-center">
                     <Link to="banner" smooth={true} duration={500} className="mx-2 cursor-pointer">
-                        <Button>Home</Button>
+                        <Button className="hover:bg-blue-600 hover:text-gray-200">Home</Button>
                     </Link>
                     <Link to="projects" smooth={true} duration={500} className="mx-2 cursor-pointer">
-                        <Button>Projects</Button>
+                        <Button className="hover:bg-blue-600 hover:text-gray-200">Projects</Button>
                     </Link>
                     <Link to="skills" smooth={true} duration={500} className="mx-2 cursor-pointer">
-                        <Button>Skills</Button>
+                        <Button className="hover:bg-blue-600 hover:text-gray-200">Skills</Button>
                     </Link>
                     <Link to="about" smooth={true} duration={500} className="mx-2 cursor-pointer">
-                        <Button>About</Button>
+                        <Button className="hover:bg-blue-600 hover:text-gray-200">About</Button>
                     </Link>
                 </div>
             </div>
         </motion.nav>
     );
-}
+};
 
 export default NavBar;
